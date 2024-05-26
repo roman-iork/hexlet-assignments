@@ -11,8 +11,8 @@ public final class App {
             config.bundledPlugins.enableDevLogging();
         });
 
-        app.get("/phones", ctx -> ctx.jsonStream(Data.getPhones()));
-        app.get("/domains", ctx -> ctx.jsonStream(Data.getDomains()));
+        app.get("/phones", ctx -> ctx.json(Data.getPhones()));
+        app.get("/domains", ctx -> ctx.json(Data.getDomains()));
 
         return app;
         // END
