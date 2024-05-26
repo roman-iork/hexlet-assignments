@@ -1,0 +1,2 @@
+check:
+	gradle checkExercises
