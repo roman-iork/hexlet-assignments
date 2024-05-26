@@ -21,6 +21,5 @@ public final class App {
     public static void main(String[] args) {
         Javalin app = getApp();
         app.start(7070);
-//        System.out.println(Data.getDomains());
     }
 }
