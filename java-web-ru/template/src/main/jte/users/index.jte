@@ -13,13 +13,14 @@
           crossorigin="anonymous">
   </head>
   <body>
-    <div>
-      <main class="container">
+    <div class="p-4">
+      <h2>Users</h2>
+      <main>
         @if(!usersPage.getUsers().isEmpty())
           @for(var user : usersPage.getUsers())
             <div class="row">
+              <p class="col-auto">${user.getId()}</p>
               <a href="/users/${user.getId()}" class="col-2">${user.getFirstName() + " " + user.getLastName()}</a>
-              <p class="col-2">${user.getId()}</p>
             </div>
           @endfor
         @endif

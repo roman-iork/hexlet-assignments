@@ -13,13 +13,21 @@
           crossorigin="anonymous">
   </head>
   <body>
-    <main class="container">
-      <div class="row">
-        <p class="col-1">${userPage.getUser().getId()}</p>
-        <p class="col-1">${userPage.getUser().getFirstName()}</p>
-        <p class="col-1">${userPage.getUser().getLastName()}</p>
-        <p class="col-1">${userPage.getUser().getEmail()}</p>
-      </div>
+    <main class="p-4">
+      <table class="table table-striped">
+        <tr>
+          <td>Id</td>
+          <td>First name</td>
+          <td>Last name</td>
+          <td>Email</td>
+        </tr>
+        <tr>
+          <td>${userPage.getUser().getId()}</td>
+          <td>${userPage.getUser().getFirstName()}</td>
+          <td>${userPage.getUser().getLastName()}</td>
+          <td>${userPage.getUser().getEmail()}</td>
+        </tr>
+      </table>
     </main>
   </body>
 </html>
