@@ -1,12 +1,9 @@
 package exercise;
 
-import exercise.dto.LoginPage;
-import exercise.dto.MainPage;
 import io.javalin.Javalin;
 import exercise.controller.SessionsController;
 import exercise.util.NamedRoutes;
 import io.javalin.rendering.template.JavalinJte;
-import static io.javalin.rendering.template.TemplateUtil.model;
 
 
 public final class App {
@@ -19,16 +16,7 @@ public final class App {
         });
 
         // BEGIN
-        app.get(NamedRoutes.rootPath(), ctx -> {
-            var auth = new MainPage(ctx.sessionAttribute("auth"));
-            if (auth.getName() != null) {
-                var page = new LoginPage((String) auth.getName(), null);
-                ctx.render("index.jte", model("page", page));
-            } else {
-                ctx.redirect(NamedRoutes.buildSessionPath());
-            }
-        });
-
+        app.get(NamedRoutes.rootPath(), SessionsController::root);
         app.get(NamedRoutes.buildSessionPath(), SessionsController::build);
         app.post(NamedRoutes.loginPath(), SessionsController::check);
         app.post(NamedRoutes.logoutPath(), SessionsController::out);

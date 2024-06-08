@@ -2,6 +2,7 @@ package exercise.controller;
 
 import static io.javalin.rendering.template.TemplateUtil.model;
 import exercise.dto.LoginPage;
+import exercise.dto.MainPage;
 import exercise.repository.UsersRepository;
 
 import exercise.util.NamedRoutes;
@@ -13,6 +14,16 @@ import io.javalin.validation.ValidationException;
 public class SessionsController {
 
     // BEGIN
+    public static void root(Context ctx) {
+        var auth = new MainPage(ctx.sessionAttribute("auth"));
+        if (auth.getName() != null) {
+            var page = new LoginPage((String) auth.getName(), null);
+            ctx.render("index.jte", model("page", page));
+        } else {
+            ctx.redirect(NamedRoutes.buildSessionPath());
+        }
+    }
+
     public static void build(Context ctx) {
         var page = new LoginPage(null, null);
         ctx.render("build.jte", model("page", page));
