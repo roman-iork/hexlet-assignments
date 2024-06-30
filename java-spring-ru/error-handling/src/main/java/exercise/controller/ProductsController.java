@@ -51,6 +51,7 @@ public class ProductsController {
         });
         product.setTitle(data.getTitle());
         product.setPrice(data.getPrice());
+        productRepository.save(product);
         return product;
     }
     // END
