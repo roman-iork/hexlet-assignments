@@ -22,8 +22,6 @@ import java.time.LocalDate;
 // BEGIN
 @Entity
 @Table(name = "tasks")
-@AllArgsConstructor
-@NoArgsConstructor
 @Getter
 @Setter
 @EntityListeners(AuditingEntityListener.class)
