@@ -7,7 +7,6 @@ import exercise.dto.ProductUpdateDTO;
 import exercise.mapper.ProductMapper;
 import exercise.specification.ProductSpecification;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -25,6 +24,8 @@ import exercise.exception.ResourceNotFoundException;
 import exercise.repository.ProductRepository;
 import jakarta.validation.Valid;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/products")
 public class ProductsController {
@@ -38,10 +39,11 @@ public class ProductsController {
     @Autowired
     private ProductSpecification specBuilder;
     @GetMapping("")
-    public Page<ProductDTO> index(ProductParamsDTO params, @RequestParam(defaultValue = "1") int page) {
+    public List<ProductDTO> index(ProductParamsDTO params, @RequestParam(defaultValue = "1") int page) {
         var spec = specBuilder.build(params);
         var products = productRepository.findAll(spec, PageRequest.of(page - 1, 10));
-        return products.map(productMapper::map);
+        var result =  products.map(productMapper::map).stream().toList();
+        return result;
     }
     // END
 
