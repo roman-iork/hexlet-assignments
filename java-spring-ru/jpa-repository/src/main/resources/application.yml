@@ -1,9 +1,0 @@
----
-server:
-  port: 7070
-spring:
-  jpa:
-    show-sql: true
-  output:
-    ansi:
-      enabled: always
