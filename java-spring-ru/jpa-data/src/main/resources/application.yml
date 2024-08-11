@@ -1,0 +1,10 @@
+---
+
+# BEGIN
+server:
+  port: 7070
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+# END
